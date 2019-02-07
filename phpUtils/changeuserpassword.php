@@ -5,8 +5,6 @@
   $comparePass = $_POST['comparepass'];
   $key = $_POST['verifyCode'];
 
-echo $pass;
-echo $key;
   //check to make sure the passwords match
   if ($pass != $comparePass) {
     echo "Passwords do not match. Check values and try again.";
