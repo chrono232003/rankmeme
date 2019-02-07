@@ -8,7 +8,7 @@ session_start();
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Vote on memes and submit your own for voting. Weekly winners!">
+    <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Rank Meme - Vote on Memes!</title>
@@ -31,22 +31,22 @@ session_start();
     <script src="vendor/jquery/jquery.min.js"></script>
 
     <script>
+
     $(document).ready(function() {
           var request;
-          $("#upload-meme-form").submit(function(event) {
+
+          $("#forgotpass-form").submit(function(event) {
 
             // Prevent default posting of form - put here to work in case of errors
             event.preventDefault();
             $('.alert').remove();
 
-            var form = document.getElementById('upload-meme-form');
+            var form = document.getElementById('forgotpass-form');
             var formData = new FormData(form);
-            <?php
-            echo "formData.append('user','".  $_SESSION["user"] . "')";
-            ?>
+
             // Fire off the request to /form.php
             request = $.ajax({
-                url: "phpUtils/memesubmit.php",
+                url: "phpUtils/sendlostpassemail.php",
                 type: "post",
                 data: formData,
                 processData: false,
@@ -58,11 +58,11 @@ session_start();
                 // Log a message to the console
                 //urlResponseHandler(response);
                 if (response != "Success") {
-                  document.getElementById("imageError").style.display = "block";
-                  document.getElementById("imageError").innerHTML = response;
+                  document.getElementById("loginError").style.display = "block";
+                  document.getElementById("loginError").innerHTML = response;
                 } else {
-                  document.getElementById("uploadSection").style.display = "none";
-                  document.getElementById("uploadSuccess").style.display = "block";
+                  document.getElementById("successblk").style.display = "block";
+                  document.getElementById("forgotpasswordsection").style.display = "none";
                 }
             });
 
@@ -107,10 +107,10 @@ session_start();
             </li>
 <?php
 if ($_SESSION["user"]) {
-            echo "<li class='nav-item active'><a class='nav-link' href='submitameme.php'>Submit a Meme!</a></li>";
+            echo "<li class='nav-item'><a class='nav-link' href='submitameme.php'>Submit a Meme!</a></li>";
             echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
           } else {
-            echo "<li class='nav-item'><a class='nav-link' href='registerlogin.php'>Login/Register</a></li>";
+            echo "<li class='nav-item active'><a class='nav-link' href='registerlogin.php'>Login/Register</a></li>";
           }
 ?>
           </ul>
@@ -120,35 +120,33 @@ if ($_SESSION["user"]) {
 
     <!-- Page Content -->
     <div class="container">
-
-      <!-- Page Heading -->
-      <h1 style = "color:white;" class="my-4">Meme Upload
-        <small>Register and Upload a Meme!</small>
-      </h1>
-<div id = "uploadSection">
-      <form id="upload-meme-form"  method="post" enctype="multipart/form-data">
-        <div id="image-preview-div" style="display: none">
-          <label for="exampleInputFile">Selected image:</label>
-          <br>
-          <img id="preview-img" src="noimage">
+      <div class="row">
+        <div class='col-lg-6'>
+          <div class="userinput rounded shadow" id = "forgotpasswordsection">
+            <h1 class="my-4">
+            <small>Retreive Password</small>
+            </h1>
+            <form id="forgotpass-form"  method="post" enctype="multipart/form-data">
+              <label for="emailfield">Email:</label>
+              <br />
+            <div class="input-group">
+                <input id="email" type="text" class="form-control" name="email" placeholder="Enter Email" required>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            </div>
+            <br />
+              <button class="btn btn-lg btn-primary" id="forgotpasswordsubmit" type="submit">Send Email</button>
+              <p id="loginError" style="display:none; color:red;"></p>
+            </form>
+          </div>
         </div>
-        <div class="form-group">
-          <input type="file" name="memeimage" id="file" accept="image/x-png,image/gif,image/jpeg" required>
-        </div>
-        <button class="btn btn-lg btn-primary" id="upload-button" type="submit" disabled>Upload image (1MB max)</button>
-        <p id="imageError" style="display:none; color:red;"></p>
-      </form>
+        <center>
+        <h1 id = "successblk" class="my-4" style = "color:white; display:none;">
+          <small>An email has been sent. Please check your email box.</small>
+        </h1>
+      </center>
 </div>
-<div id = "uploadSuccess" style="display:none">
-  <h1 class="my-4">
-      <small style="color:green">Meme Upload Successful!</small>
-      <small style="color:green">Go <a href="index.php">Vote!</a></small>
-    </h1>
 </div>
-
-
-    </div>
-    <!-- /.container -->
+<!-- /.container -->
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">

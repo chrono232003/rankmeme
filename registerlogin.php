@@ -186,6 +186,7 @@ if ($_SESSION["user"]) {
             <label for="loginpass">Password:</label>
             <input type="password" class="form-control" name="loginpass" id="loginpass" placeholder="Password" required>
             </div>
+            <p>forgot your password? <a href="forgotpassword.php">click here</a></p>
               <button class="btn btn-lg btn-primary" id="login" type="submit">Login</button>
               <p id="loginError" style="display:none; color:red;"></p>
             </form>

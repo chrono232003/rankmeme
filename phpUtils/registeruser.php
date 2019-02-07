@@ -66,7 +66,7 @@ if ($secure_check == false) {
     echo "Invalid email input";
     return;
 } else { //send email
-  //  mail($to_email, $subject, $message, $headers);
+    mail($to_email, $subject, $message, $headers);
 }
 
 //check to see if the email is already in the database. If so, grab the id and use that to store the image.

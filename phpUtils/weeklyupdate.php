@@ -9,7 +9,7 @@ $row = mysqli_fetch_assoc($resultgetwinner);
 //store winner values in variables
 $user = $row['User'];
 $email = $row['email'];
-$memepath = "images/".$row['ID']. "-" .$row['memepath'];
+$memepath = "images/".$row['ID']. "" .$row['memepath'];
 
 //add the winner to the winner db
 if ($user && $email && $memepath) {
