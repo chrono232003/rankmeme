@@ -1,0 +1,17 @@
+[04-Feb-2019 23:56:31 UTC] PHP Warning:  move_uploaded_file(avatars/59-darkSideofTheMoon.jpeg): failed to open stream: No such file or directory in /home2/playolds/public_html/rankmeme/phpUtils/registeruser.php on line 93
+[04-Feb-2019 23:56:31 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpVh8185' to 'avatars/59-darkSideofTheMoon.jpeg' in /home2/playolds/public_html/rankmeme/phpUtils/registeruser.php on line 93
+[05-Feb-2019 00:06:08 UTC] PHP Warning:  move_uploaded_file(avatars/60-darkSideofTheMoon.jpeg): failed to open stream: No such file or directory in /home2/playolds/public_html/rankmeme/phpUtils/registeruser.php on line 93
+[05-Feb-2019 00:06:08 UTC] PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpOzzFqm' to 'avatars/60-darkSideofTheMoon.jpeg' in /home2/playolds/public_html/rankmeme/phpUtils/registeruser.php on line 93
+[05-Feb-2019 02:47:05 UTC] PHP Parse error:  syntax error, unexpected '=' in /home2/playolds/public_html/rankmeme/phpUtils/verifyuser.php on line 5
+[05-Feb-2019 02:50:32 UTC] PHP Parse error:  syntax error, unexpected '=' in /home2/playolds/public_html/rankmeme/phpUtils/verifyuser.php on line 5
+[05-Feb-2019 02:50:40 UTC] PHP Parse error:  syntax error, unexpected '=' in /home2/playolds/public_html/rankmeme/phpUtils/verifyuser.php on line 5
+[07-Feb-2019 00:30:27 UTC] PHP Parse error:  syntax error, unexpected '$to_email' (T_VARIABLE) in /home2/playolds/public_html/rankmeme/phpUtils/sendlostpassemail.php on line 20
+[07-Feb-2019 00:30:50 UTC] PHP Parse error:  syntax error, unexpected '$to_email' (T_VARIABLE) in /home2/playolds/public_html/rankmeme/phpUtils/sendlostpassemail.php on line 20
+[07-Feb-2019 00:31:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sanitize_my_email() in /home2/playolds/public_html/rankmeme/phpUtils/sendlostpassemail.php:25
+Stack trace:
+#0 {main}
+  thrown in /home2/playolds/public_html/rankmeme/phpUtils/sendlostpassemail.php on line 25
+[07-Feb-2019 00:31:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sanitize_my_email() in /home2/playolds/public_html/rankmeme/phpUtils/sendlostpassemail.php:25
+Stack trace:
+#0 {main}
+  thrown in /home2/playolds/public_html/rankmeme/phpUtils/sendlostpassemail.php on line 25

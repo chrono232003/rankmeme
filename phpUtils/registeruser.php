@@ -9,11 +9,6 @@ $file_name = $_FILES['avatarimage']['name'];
 
 /* registration form validation */
 
-//check file size
-if($_FILES['avatarimage']['size'] > 1048576){
-  return "exceeds file size limit";
-}
-
 //check to make sure that the required fields have values.
 if ($email == "" or $user == "" or $pass == "" or $comparePass =="") {
   echo "Please fill out all required fields.";
@@ -24,6 +19,23 @@ if ($email == "" or $user == "" or $pass == "" or $comparePass =="") {
 if ($pass != $comparePass) {
   echo "Passwords do not match. Check values and try again.";
   return;
+}
+
+//validate username
+if (strlen($user) < 5) {
+  echo "Please make sure that your username is at least 5 characters.";
+  return;
+}
+
+//validate password
+if (strlen($pass) < 7) {
+  echo "Please make sure that your password is at least 7 characters.";
+  return;
+}
+
+//check file size
+if($_FILES['avatarimage']['size'] > 1048576){
+  return "exceeds file size limit";
 }
 
 //send the user an email to confirm them
@@ -66,7 +78,7 @@ if ($secure_check == false) {
     echo "Invalid email input";
     return;
 } else { //send email
-  //  mail($to_email, $subject, $message, $headers);
+    mail($to_email, $subject, $message, $headers);
 }
 
 //check to see if the email is already in the database. If so, grab the id and use that to store the image.

@@ -8,7 +8,7 @@ session_start();
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="description" content="Vote on memes and submit your own for voting. Weekly winners!">
     <meta name="author" content="">
 
     <title>Rank Meme - Vote on Memes!</title>
