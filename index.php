@@ -47,45 +47,53 @@ session_start();
         request.done(function (response, textStatus, jqXHR){
               console.log(response);
         });
+
+        grabmemes();
     }
+
+    function grabmemes() {
+        var request;
+
+          // Fire off the request to /form.php
+          request = $.ajax({
+              url: "phpUtils/grabmemes.php",
+              type: "get",
+          });
+
+          // Callback handler that will be called on success
+          request.done(function (response, textStatus, jqXHR){
+              var html = "";
+              var json = JSON.parse(response);
+              for(var i = 0; i <  json["object_name"].length; i++) {
+                  var imagePath = "images/" + json["object_name"][i].ID + "-" + json["object_name"][i].memepath;
+                  var imageID = json["object_name"][i].memeID;
+                  html += "<div class='col-lg-6 portfolio-item memeblk' onclick='updateVote("+imageID+")'><img class='img-thumbnail meme-images' src='"+ imagePath +"'></div>";
+                  $("#votebox").html(html);
+              }
+          });
+
+          // Callback handler that will be called on failure
+          request.fail(function (jqXHR, textStatus, errorThrown){
+              // Log the error to the console
+              console.error(
+                  "The following error occurred: "+
+                  textStatus, errorThrown
+              );
+          });
+
+          // Callback handler that will be called regardless
+          // if the request failed or succeeded
+          request.always(function () {
+              // Reenable the inputs
+              //$inputs.prop("disabled", false);
+          });
+        }
 
 
     $(document).ready(function() {
-          var request;
 
-            // Fire off the request to /form.php
-            request = $.ajax({
-                url: "phpUtils/grabmemes.php",
-                type: "get",
-            });
-
-            // Callback handler that will be called on success
-            request.done(function (response, textStatus, jqXHR){
-                var html = "";
-                var json = JSON.parse(response);
-                for(var i = 0; i <  json["object_name"].length; i++) {
-                    var imagePath = "images/" + json["object_name"][i].ID + "-" + json["object_name"][i].memepath;
-                    var imageID = json["object_name"][i].memeID;
-                    html += "<div class='col-lg-6 portfolio-item memeblk'><a href='index.php' onclick='updateVote("+imageID+")'><img class='img-thumbnail meme-images' src='"+ imagePath +"'></a></div>";
-                    $("#votebox").html(html);
-                }
-            });
-
-            // Callback handler that will be called on failure
-            request.fail(function (jqXHR, textStatus, errorThrown){
-                // Log the error to the console
-                console.error(
-                    "The following error occurred: "+
-                    textStatus, errorThrown
-                );
-            });
-
-            // Callback handler that will be called regardless
-            // if the request failed or succeeded
-            request.always(function () {
-                // Reenable the inputs
-                //$inputs.prop("disabled", false);
-            });
+      //ajax call so that we do not need to refresh the while page each time someone votes.
+      grabmemes();
 
             //get votes
             var request2;
