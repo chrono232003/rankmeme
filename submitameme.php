@@ -8,7 +8,7 @@ session_start();
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Vote on memes and submit your own for voting. Weekly winners!">
+    <meta name="description" content="Submit a meme to Rank Meme! ">
     <meta name="author" content="">
 
     <title>Rank Meme - Vote on Memes!</title>
@@ -42,7 +42,8 @@ session_start();
             var form = document.getElementById('upload-meme-form');
             var formData = new FormData(form);
             <?php
-            echo "formData.append('user','".  $_SESSION["user"] . "')";
+            echo "formData.append('userID','".  $_SESSION["userID"] . "');";
+            echo "formData.append('userName','".  $_SESSION["name"] . "');";
             ?>
             // Fire off the request to /form.php
             request = $.ajax({
@@ -91,32 +92,9 @@ session_start();
 
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Rank Meme</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.php">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-<?php
-if ($_SESSION["user"]) {
-            echo "<li class='nav-item active'><a class='nav-link' href='submitameme.php'>Submit a Meme!</a></li>";
-            echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
-          } else {
-            echo "<li class='nav-item'><a class='nav-link' href='registerlogin.php'>Login/Register</a></li>";
-          }
-?>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <?php
+    require_once('page-components/menu.php');
+    ?>
 
     <!-- Page Content -->
     <div class="container">

@@ -19,6 +19,9 @@ session_start();
     <!-- Custom styles for this template -->
     <link href="css/2-col-portfolio.css" rel="stylesheet">
 
+    <!--recapcha-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133843632-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -140,32 +143,9 @@ session_start();
 
   <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">Rank Meme</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="index.php">Home
-                <span class="sr-only">(current)</span>
-              </a>
-            </li>
-<?php
-if ($_SESSION["user"]) {
-            echo "<li class='nav-item'><a class='nav-link' href='submitameme.php'>Submit a Meme!</a></li>";
-            echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
-          } else {
-            echo "<li class='nav-item active'><a class='nav-link' href='registerlogin.php'>Login/Register</a></li>";
-          }
-?>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <?php
+    require_once('page-components/menu.php');
+    ?>
 
     <!-- Page Content -->
     <div class="container">
@@ -187,6 +167,7 @@ if ($_SESSION["user"]) {
             <input type="password" class="form-control" name="loginpass" id="loginpass" placeholder="Password" required>
             </div>
             <p>forgot your password? <a href="forgotpassword.php">click here</a></p>
+            <div class="g-recaptcha" data-sitekey="6LdVepAUAAAAACPLJu3SYE5X6S1Zwq67pekiZlUL"></div>
               <button class="btn btn-lg btn-primary" id="login" type="submit">Login</button>
               <p id="loginError" style="display:none; color:red;"></p>
             </form>
@@ -229,6 +210,7 @@ if ($_SESSION["user"]) {
           Avatar (Optional):
           <input type="file" name="avatarimage" id="file" accept="image/x-png,image/gif,image/jpeg">
         </div>
+        <div class="g-recaptcha" data-sitekey="6LdVepAUAAAAACPLJu3SYE5X6S1Zwq67pekiZlUL"></div>
         <button class="btn btn-lg btn-primary" id="uploadAvatar" type="submit">Register</button>
         <p id="registerError" style="display:none; color:red;"></p>
       </form>

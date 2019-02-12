@@ -1,8 +1,7 @@
 <?php
 require 'connect.php';
 
-$user = $_POST["userID"];
-$name = $_POST["userName"];
+$user = $_POST["user"];
 
 //check file size
 if($_FILES['memeimage']['size'] > 1048576){
@@ -15,10 +14,18 @@ $file_tmp =$_FILES['memeimage']['tmp_name'];
 $file_type=$_FILES['memeimage']['type'];
 $uploaddir = '../images/';
 
-$queryforimage = "INSERT INTO memes (emailID, memepath, votecount) VALUES('".$user."', '".$file_name."', '0')";
+//grab the user id from the db
+$queryuserId = "SELECT ID FROM emails WHERE User = '".$user."'";
+$userQueryResult = mysqli_query($conn, $queryuserId);
+
+$row = mysqli_fetch_assoc($userQueryResult);
+$userId = $row['ID'];
+
+$queryforimage = "INSERT INTO memes (emailID, memepath, votecount) VALUES('".$userId."', '".$file_name."', '0')";
 $imageResult = mysqli_query($conn, $queryforimage);
+
 //store the image file
-if (move_uploaded_file($file_tmp, $uploaddir . '' . $_POST["userID"] . '-' . $file_name)) {
+if (move_uploaded_file($file_tmp, $uploaddir . '' . $userId . '-' . $file_name)) {
   mysqli_close($conn);
   echo "Success";
 } else {
