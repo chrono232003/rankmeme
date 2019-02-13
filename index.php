@@ -112,7 +112,12 @@ session_start();
                       var imagePath = "images/" + json["object_name"][i].emailID + "-" + json["object_name"][i].memepath;
                       var imageID = json["object_name"][i].memeID;
                       var user = json["object_name"][i].User;
-                      html += "<div class='col-lg-12 portfolio-item'><p style='color:white;'>"+user+"</p><img class='img-thumbnail side-bar-img' src='"+ imagePath +"'></div>";
+                      var avatarLink = json["object_name"][i].avatarLink;
+                      if (avatarLink) {
+                        html += "<div class='col-lg-12 portfolio-item'><img src = '"+avatarLink+"' /><p style='font-size:small;'>"+user+"</p><img class='img-thumbnail side-bar-img' src='"+ imagePath +"'></div>";
+                      } else {
+                        html += "<div class='col-lg-12 portfolio-item'><p style='font-size:small;'>"+user+"</p><img class='img-thumbnail side-bar-img' src='"+ imagePath +"'></div>";
+                      }
                       $("#topfive").html(html);
                   }
               });
@@ -148,7 +153,7 @@ session_start();
                     for(var i = 0; i <  json["object_name"].length; i++) {
                         var imagePath = json["object_name"][i].MemePath;
                         var user = json["object_name"][i].User;
-                        html += "<div class='col-lg-12 portfolio-item'><p>Submitted By: <b>"+user+"</b></p><img class='img-thumbnail side-bar-img' src='"+ imagePath +"'></div>";
+                        html += "<div class='col-lg-12 portfolio-item'><p style='color:black;'>Submitted By: <b>"+user+"</b></p><img class='img-thumbnail side-bar-img' src='"+ imagePath +"'></div>";
                         $("#winnerinfo").html(html);
                     }
                 });
@@ -198,7 +203,7 @@ require_once('page-components/menu.php');
           <div class="rounded shadow" id="weeklywinner">
             <center>
             <h2 class="my-4">
-              <small>Last Week's Winner!</small>
+              <small style = "color:black;">Last Week's Winner!</small>
             </h2>
             <div id="winnerinfo" class="row"></div>
             <center>

@@ -39,6 +39,11 @@ body {
   background-color: #5c6166;
 }
 
+
+a.dropdown-link:hover{
+  opacity:0.5;
+}
+
 .side-bar-img {
   max-width:100%;
 }

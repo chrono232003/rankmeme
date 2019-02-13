@@ -69,23 +69,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <!-- <li class="nav-item active">
-          <a class="nav-link" href="index.php">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li> -->
+
+
+        <li class='nav-item'><a class='nav-link' href='latestadded.php'>Latest Memes</a></li>
+        <li class='nav-item'><a class='nav-link' href='privatepolicy.php'>Privacy Policy</a></li>
 <?php
 if ($_SESSION["userID"]) {
-          echo "<li class='nav-item' style='padding:.5rem'><img width = '30px' src='//graph.facebook.com/".$_SESSION["userID"]."/picture'></li>";
-        echo "<li class='nav-item' style='padding:.5rem 1rem'>" . $_SESSION["name"] . "</li>";
-        echo "<li class='nav-item'><a class='nav-link' href='submitameme.php'>Submit a Meme!</a></li>";
-        echo "<li class='nav-item'><a class='nav-link' href='logout.php'>Logout</a></li>";
+        echo "<li class='dropdown' style='padding: .5rem 1rem;'><a class='dropdown-toggle' style='color:white;' data-toggle='dropdown' href='#'>";
+        echo "<img width = '30px' src='//graph.facebook.com/".$_SESSION["userID"]."/picture'>";
+        echo "<span class='caret'></span></a>";
+        echo "<ul class='dropdown-menu sidebar'>";
+        echo "<li><a class='dropdown-link' href='submitameme.php' style='color:white; text-decoration:none; margin-left:10px;'>Submit a Meme!</a></li>";
+        echo "<li><a class='dropdown-link' href='logout.php' style='color:white; text-decoration:none; margin-left:10px;'>Logout</a></li>";
+        echo "</ul>";
+        echo "</li>";
       } else {
         //echo "<li class='nav-item'><a class='nav-link' href='registerlogin.php'>Login/Register</a></li>";
         echo "<li class='nav-item' style='padding:.5rem 1rem'><fb:login-button scope='public_profile,email' onlogin='checkLoginState();'></fb:login-button></li>";
       }
 ?>
-<li class='nav-item'><a class='nav-link' href='latestadded.php'>Latest Memes</a></li>
       </ul>
     </div>
   </div>

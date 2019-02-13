@@ -123,13 +123,24 @@ $user = $_SESSION['userID'] ?: "";
 
     $(document).ready(function() {
 
+      function getParameterByName(name, url) {
+          if (!url) url = window.location.href;
+          name = name.replace(/[\[\]]/g, '\\$&');
+          var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+              results = regex.exec(url);
+          if (!results) return null;
+          if (!results[2]) return '';
+          return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+
             //get votes
             var request2;
-
+            var memeID = getParameterByName('memeid');
               // Fire off the request to /form.php
               request2 = $.ajax({
-                  url: "phpUtils/getlatestmemes.php",
-                  type: "get",
+                  url: "phpUtils/getsinglememe.php",
+                  type: "post",
+                  data: {memeid: memeID}
               });
 
               // Callback handler that will be called on success
@@ -140,11 +151,12 @@ $user = $_SESSION['userID'] ?: "";
                       var memeID = json["object_name"][i].ID;
                       var imagePath = "images/" + json["object_name"][i].emailID + "-" + json["object_name"][i].memepath;
                       var user = json["object_name"][i].User;
+                      var avatar = json["object_name"][i].avatarLink;
                       var votecount = json["object_name"][i].votecount;
                       var commentcount = json["object_name"][i].commentcount;
                       html += "<div class='col-lg-12 portfolio-item'>";
-                      html += "<p style='color:white;'>"+user+"</p>";
-                      html += "<a href = 'meme.php?memeid="+memeID+"'><img class='img-thumbnail img-fluid' style='max-height:300px;' src='"+ imagePath +"'></a>";
+                      html += "<p style='color:white;'><img style='margin-right:10px;'src='"+avatar+"'/>"+user+"</p>";
+                      html += "<img class='img-thumbnail img-fluid' style='max-width=100%;' src='"+ imagePath +"'>";
                       html += "<div class='row'>";
                       html += "<div class='col-lg-2'>";
                       html += "<p style='color:white;'><i class='fas fa-vote-yea'></i> " +votecount+"</p>";
