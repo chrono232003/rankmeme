@@ -6,7 +6,7 @@
 
 body {
   padding-top: 54px;
-  background-color: #343a40;
+  background-color: darkslategray;
   color:white;
 }
 
@@ -14,6 +14,10 @@ body {
   body {
     padding-top: 56px;
   }
+}
+
+footer {
+  margin-top: 15px;
 }
 
 .portfolio-item {
@@ -55,7 +59,7 @@ a.dropdown-link:hover{
 
 #weeklywinner {
   margin-top:10px;
-  background-color:yellow;
+  background-color:lightblue;
 }
 
 .comment-link {
@@ -64,5 +68,17 @@ a.dropdown-link:hover{
 }
 
 .comment-link:hover {
+  opacity: 0.5;
+}
+
+.weekly-contest-link {
+  background:none;
+  text-decoration: underline;
+  border:none;
+  color:white;
+}
+
+.weekly-contest-link:hover {
+  color:white;
   opacity: 0.5;
 }

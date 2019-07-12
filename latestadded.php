@@ -2,6 +2,16 @@
 session_start();
 $name = $_SESSION['name'] ?: "";
 $user = $_SESSION['userID'] ?: "";
+
+function getLatestMemes() {
+  include 'phpUtils/connect.php';
+
+  $query = "SELECT m.ID, m.memepath, m.emailID, m.dateAdded, m.votecount, m.commentcount, e.User, e.avatarLink as ImageLink FROM memes AS m INNER JOIN emails as e on m.emailID = e.id ORDER BY dateAdded DESC LIMIT 100";
+  $result = mysqli_query($conn, $query);
+  return $result;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +23,7 @@ $user = $_SESSION['userID'] ?: "";
     <meta name="description" content="Latest Added Memes">
     <meta name="author" content="">
 
-    <title>Rank Meme - Vote on Memes!</title>
+    <title>Latest added memes to browse and comment - Rank Meme!</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,6 +47,9 @@ $user = $_SESSION['userID'] ?: "";
 
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <!-- font awesome for the spinner -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script>
 
@@ -74,7 +87,7 @@ $user = $_SESSION['userID'] ?: "";
               var commentDate = json["object_name"][i].CommentDate;
               var avatar = json["object_name"][i].ImageLink;
               if (avatar) {
-              html += "<img width='30px' src = '"+avatar+"'/> " + user + " at " + commentDate + "<br /><br />" + comment + "<hr />";
+              html += "<img width='30px' src = '"+avatar+"'/> " + user.split(" ")[0] + " at " + commentDate + "<br /><br />" + comment + "<hr />";
             } else {
               html += user + " at " + commentDate + "<br /><br />" + comment + "<hr />";
             }
@@ -120,56 +133,6 @@ $user = $_SESSION['userID'] ?: "";
           );
       });
     }
-
-    $(document).ready(function() {
-
-            //get votes
-            var request2;
-
-              // Fire off the request to /form.php
-              request2 = $.ajax({
-                  url: "phpUtils/getlatestmemes.php",
-                  type: "get",
-              });
-
-              // Callback handler that will be called on success
-              request2.done(function (response, textStatus, jqXHR){
-                  var html = "";
-                  var json = JSON.parse(response);
-                  for(var i = 0; i <  json["object_name"].length; i++) {
-                      var memeID = json["object_name"][i].ID;
-                      var imagePath = "images/" + json["object_name"][i].emailID + "-" + json["object_name"][i].memepath;
-                      var user = json["object_name"][i].User;
-                      var votecount = json["object_name"][i].votecount;
-                      var commentcount = json["object_name"][i].commentcount;
-                      html += "<div class='col-lg-12 portfolio-item'>";
-                      html += "<p style='color:white;'>"+user+"</p>";
-                      html += "<a href = 'meme.php?memeid="+memeID+"'><img class='img-thumbnail img-fluid' style='max-height:300px;' src='"+ imagePath +"'></a>";
-                      html += "<div class='row'>";
-                      html += "<div class='col-lg-2'>";
-                      html += "<p style='color:white;'><i class='fas fa-vote-yea'></i> " +votecount+"</p>";
-                      html += "</div>";
-                      html += "<div class='col-lg-2'>";
-                      html += "<button class='comment-link' data-toggle='collapse' data-target='#commentSection"+i+"' onclick='commentExpand("+i+","+memeID+")'><p style='color:white;'><i class='fas fa-comments'></i> " +commentcount+"</p></button>";
-                      html += "</div>";
-                      html += "</div>";
-                      html += "<div id='commentSection"+i+"' class='collapse'></div>";
-                      html += "</div>";
-                      $("#latestmemes").html(html);
-                  }
-              });
-
-              // Callback handler that will be called on failure
-              request2.fail(function (jqXHR, textStatus, errorThrown){
-                  // Log the error to the console
-                  console.error(
-                      "The following error occurred: "+
-                      textStatus, errorThrown
-                  );
-              });
-
-        });
-
         </script>
  </head>
 
@@ -186,10 +149,59 @@ $user = $_SESSION['userID'] ?: "";
           <!-- Page Heading -->
           <center>
             <h1 style="color:white;" class="my-4">Latest Added</h1>
-          </center>
 
-          <div id="latestmemes" class="row"></div>
+<div id="amzn-assoc-ad-3b51d882-5934-4a45-8a88-3547326ee7ad"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3b51d882-5934-4a45-8a88-3547326ee7ad"></script>
 
+<!-- loading spinner -->
+<div id = "spinner" style="margin-top: 50px;">
+<i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>
+</div>
+
+</center>
+
+          <div id="latestmemes" class="row">
+
+
+          <?php
+          $result = getLatestMemes();
+          if ($result) {
+            while ($row=mysqli_fetch_row($result)) {
+                  $memeID = $row[0];
+                  $memePath = $row[1];
+                  $altValue = str_replace('images/','',$memePath);
+                  $altValue = str_replace('.jpg','',$altValue);
+                  $altValue = str_replace('.png','',$altValue);
+                  $imagePath = "images/" .$row[2]. "-" . $memePath;
+                  $user = $row[6];
+                  $userFirstName = explode(" ", $user)[0];
+                  $votecount = $row[4];
+                  $commentcount = $row[5];
+                  $avatar = $row[7];
+                  echo "<div class='col-lg-4 portfolio-item'>";
+                  if ($avatar) {
+                      echo "<p style='color:white;'><img width='30px;' style='margin-right:5px;' src = '".$avatar."'/>".$userFirstName."</p>";
+                      } else {
+                      echo "<p style='color:white;'>".$userFirstName."</p>";
+                     }
+                      echo "<a href = 'meme.php?memeid=".$memeID."'><img class='img-thumbnail img-fluid' style='max-height:300px;' src='". $imagePath ."' alt='".$altValue."'></a>";
+                      echo "<div class='row'>";
+                      echo "<div class='col-lg-6'>";
+                      echo "<p style='color:white;'><i class='fas fa-thumbs-up'></i> " .$votecount."</p>";
+                      echo "</div>";
+                      echo "<div class='col-lg-6'>";
+                      //echo "<button class='comment-link' data-toggle='collapse' data-target='#commentSection"+i+"' onclick='commentExpand("+i+","+memeID+")'><p style='color:white;'><i class='fas fa-comments'></i> " +commentcount+"</p></button>";
+                      echo "<a href = 'meme.php?memeid=".$memeID."'><button class='comment-link'><p style='color:white;'><i class='fas fa-comments'></i> " .$commentcount."</p></button></a>";
+                      echo "</div>";
+                      echo "</div>";
+                      //echo "<div id='commentSection"+i+"' class='collapse'></div>";
+                      echo "</div>";
+            }
+          }
+           ?>
+        <script>
+          $('#spinner').css("display", "none");
+          </script>
+          </div>
         </div>
     </div>
   </div>

@@ -1,4 +1,6 @@
 <!-- Navigation -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="537294605596-c2cn8i01b2p2v9hkn80frg58ch6tgeag.apps.googleusercontent.com">
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -60,16 +62,26 @@
     statusChangeCallback(response);
   });
  }
+
+/*google sign in function */
+ function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
 </script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="index.php">Rank Meme</a>
+    <img src = "site-images/logo.png" width="150px"/>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
 
+        <li class='nav-item'><a class='nav-link' href='index.php'>Home</a></li>
 
         <li class='nav-item'><a class='nav-link' href='latestadded.php'>Latest Memes</a></li>
         <li class='nav-item'><a class='nav-link' href='privatepolicy.php'>Privacy Policy</a></li>
@@ -85,10 +97,13 @@ if ($_SESSION["userID"]) {
         echo "</li>";
       } else {
         //echo "<li class='nav-item'><a class='nav-link' href='registerlogin.php'>Login/Register</a></li>";
-        echo "<li class='nav-item' style='padding:.5rem 1rem'><fb:login-button scope='public_profile,email' onlogin='checkLoginState();'></fb:login-button></li>";
+        echo "<div class='fb-login-button' style='margin-top:8px;' data-size='medium' data-button-type='login_with' data-auto-logout-link='false' data-use-continue-as='false' onlogin='checkLoginState();'></div>";
+        //echo "<div class='g-signin2' data-onsuccess='onSignIn'></div>";
+        //echo "<li class='nav-item' style='padding:.5rem 1rem'><fb:login-button scope='public_profile,email' onlogin='checkLoginState();'></fb:login-button></li>";
       }
 ?>
       </ul>
     </div>
   </div>
 </nav>
+<br />

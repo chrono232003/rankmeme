@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+	<title>Rank Meme - Vote on Memes!</title>
+	<description>Vote on memes and submit your own for voting. Weekly winners!</description>
+	<link>https://rankmeme.com</link>
+	<item>
+		<title>Latest Memes</title>
+		<link>https://rankmeme.com/latestadded.php</link>
+		<description>Latest Added Memes</description>
+	</item>
+  <item>
+    <title>Bugs Bunny Trump</title>
+    <link>https://rankmeme.com/meme.php?memeid=90</link>
+    <description>Bugs Bunny Trump</description>
+  </item>
+</channel>
+</rss>

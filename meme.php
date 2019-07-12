@@ -10,7 +10,7 @@ $user = $_SESSION['userID'] ?: "";
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Latest Added Memes">
+    <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Rank Meme - Vote on Memes!</title>
@@ -74,7 +74,7 @@ $user = $_SESSION['userID'] ?: "";
               var commentDate = json["object_name"][i].CommentDate;
               var avatar = json["object_name"][i].ImageLink;
               if (avatar) {
-              html += "<img width='30px' src = '"+avatar+"'/> " + user + " at " + commentDate + "<br /><br />" + comment + "<hr />";
+              html += "<img width='30px' src = '"+avatar+"'/> " + user.split(" ")[0] + " at " + commentDate + "<br /><br />" + comment + "<hr />";
             } else {
               html += user + " at " + commentDate + "<br /><br />" + comment + "<hr />";
             }
@@ -154,20 +154,26 @@ $user = $_SESSION['userID'] ?: "";
                       var avatar = json["object_name"][i].avatarLink;
                       var votecount = json["object_name"][i].votecount;
                       var commentcount = json["object_name"][i].commentcount;
+
+                      //set the page description and title
+                      document.getElementsByName("description")[0].content = json["object_name"][i].memepath + " - Rank Meme";
+                      document.getElementsByTagName("title")[0].innerHTML = json["object_name"][i].memepath + " - Rank Meme";
+
                       html += "<div class='col-lg-12 portfolio-item'>";
-                      html += "<p style='color:white;'><img style='margin-right:10px;'src='"+avatar+"'/>"+user+"</p>";
+                      html += "<p style='color:white;'><img style='margin-right:10px;'src='"+avatar+"'/>"+user.split(" ")[0]+"</p>";
                       html += "<img class='img-thumbnail img-fluid' style='max-width=100%;' src='"+ imagePath +"'>";
                       html += "<div class='row'>";
                       html += "<div class='col-lg-2'>";
-                      html += "<p style='color:white;'><i class='fas fa-vote-yea'></i> " +votecount+"</p>";
+                      html += "<p style='color:white;'><i class='fas fa-thumbs-up'></i> " +votecount+"</p>";
                       html += "</div>";
                       html += "<div class='col-lg-2'>";
-                      html += "<button class='comment-link' data-toggle='collapse' data-target='#commentSection"+i+"' onclick='commentExpand("+i+","+memeID+")'><p style='color:white;'><i class='fas fa-comments'></i> " +commentcount+"</p></button>";
+                      html += "<p style='color:white;'><i class='fas fa-comments'></i> " +commentcount+"</p>";
                       html += "</div>";
                       html += "</div>";
-                      html += "<div id='commentSection"+i+"' class='collapse'></div>";
+                      html += "<div id='commentSection"+i+"'></div>";
                       html += "</div>";
                       $("#latestmemes").html(html);
+                      commentExpand(i,memeID);
                   }
               });
 
@@ -195,11 +201,9 @@ $user = $_SESSION['userID'] ?: "";
     <div class="container">
       <div class="row">
         <div class='col-lg-12'>
-          <!-- Page Heading -->
           <center>
-            <h1 style="color:white;" class="my-4">Latest Added</h1>
+<div id="amzn-assoc-ad-3b51d882-5934-4a45-8a88-3547326ee7ad"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=3b51d882-5934-4a45-8a88-3547326ee7ad"></script>
           </center>
-
           <div id="latestmemes" class="row"></div>
 
         </div>

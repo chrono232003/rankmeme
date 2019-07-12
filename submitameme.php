@@ -58,7 +58,7 @@ session_start();
             request.done(function (response, textStatus, jqXHR){
                 // Log a message to the console
                 //urlResponseHandler(response);
-                if (response != "Success") {
+                if (response.trim() != "Success") {
                   document.getElementById("imageError").style.display = "block";
                   document.getElementById("imageError").innerHTML = response;
                 } else {

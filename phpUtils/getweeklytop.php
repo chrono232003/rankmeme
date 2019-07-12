@@ -1,6 +1,6 @@
 <?php
 include 'connect.php';
-$query = "SELECT m.emailID, m.memepath, e.User, e.avatarLink FROM memes as m INNER JOIN emails as e ON e.ID = m.emailID ORDER BY votecount DESC LIMIT 5";
+$query = "SELECT m.ID, m.emailID, m.memepath, e.User, e.avatarLink, m.votecount FROM memes as m INNER JOIN emails as e ON e.ID = m.emailID ORDER BY votecount DESC LIMIT 5";
 $result = mysqli_query($conn, $query);
 $rows = array();
 while($r = mysqli_fetch_assoc($result)) {

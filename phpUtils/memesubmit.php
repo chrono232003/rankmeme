@@ -4,6 +4,10 @@ require 'connect.php';
 $user = $_POST["userID"];
 $name = $_POST["userName"];
 
+if (!$user) {
+  return "You must login before uploading!";
+}
+
 //check file size
 if($_FILES['memeimage']['size'] > 1048576){
   return "exceeds file size limit";
