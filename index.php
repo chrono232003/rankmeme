@@ -80,7 +80,7 @@ require_once('page-components/menu.php');
           <div class="rounded shadow" id="weeklywinner">
             <center>
             <h2 class="my-4">
-              <small style = "color:black;">Last Week's Winner!</small>
+              <small>Last Week's Winner!</small>
             </h2>
             <div id="winnerinfo" class="row"></div>
             <center>
@@ -98,11 +98,9 @@ require_once('page-components/menu.php');
     <!-- /.container -->
 
     <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Rank Meme 2019</p>
-      </div>
-      <!-- /.container -->
+    <?php
+    require_once('page-components/footer.php');
+    ?>
     </footer>
 
     <!-- Bootstrap core JavaScript -->

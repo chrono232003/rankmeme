@@ -72,7 +72,7 @@
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 </script>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #1E1E1E !important">
   <div class="container">
     <img src = "site-images/logo.png" width="150px"/>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

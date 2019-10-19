@@ -90,9 +90,9 @@ function getWeeklyTop() {
                 var votecount = json["object_name"][i].votecount;
                 var avatarLink = json["object_name"][i].avatarLink;
                 if (avatarLink) {
-                  html += "<div class='col-lg-12'><img src = '"+avatarLink+"' /><p style='font-size:small;'>"+user+"</p><a href='meme.php?memeid="+ imageID +"'><img class='img-thumbnail side-bar-img' src='"+ imagePath +"' alt='"+ imagePath.replace('images/','').replace('.jpg','').replace('.png','') +"'><p style='color:white;'><i class='fas fa-thumbs-up'></i></i> " +votecount+"</p><a/></div>";
+                  html += "<div class='col-lg-12'><img src = '"+avatarLink+"' /><p style='font-size:small;'>"+user+"</p><a href='meme.php?memeid="+ imageID +"'><img class='img-thumbnail side-bar-img' src='"+ imagePath +"' alt='"+ imagePath.replace('images/','').replace('.jpg','').replace('.png','') +"'><p style='color: #2E2F2F;'><i class='fas fa-thumbs-up'></i></i> " +votecount+"</p><a/></div>";
                 } else {
-                  html += "<div class='col-lg-12'><p style='font-size:small;'>"+user+"</p><a href='meme.php?memeid="+ imageID +"'><img class='img-thumbnail side-bar-img' src='"+ imagePath +"' alt='"+ imagePath.replace('images/','').replace('.jpg','').replace('.png','') +"'><p style='color:white;'><i class='fas fa-thumbs-up'></i> " +votecount+"</p></a></div>";
+                  html += "<div class='col-lg-12'><p style='font-size:small;'>"+user+"</p><a href='meme.php?memeid="+ imageID +"'><img class='img-thumbnail side-bar-img' src='"+ imagePath +"' alt='"+ imagePath.replace('images/','').replace('.jpg','').replace('.png','') +"'><p style='color: #2E2F2F;'><i class='fas fa-thumbs-up'></i> " +votecount+"</p></a></div>";
                 }
                 $("#topfive").html(html);
             }
@@ -132,7 +132,7 @@ function getWinner() {
               for(var i = 0; i <  json["object_name"].length; i++) {
                   var imagePath = json["object_name"][i].MemePath;
                   var user = json["object_name"][i].User;
-                  html += "<div class='col-lg-12 portfolio-item'><p style='color:black;'>Submitted By: <b>"+user+"</b></p><img class='img-thumbnail side-bar-img' src='"+ imagePath +"' alt='"+ imagePath.replace('images/','').replace('.jpg','').replace('.png','') +"'></div>";
+                  html += "<div class='col-lg-12 portfolio-item'><p style='color: #1E1E1E;;'>Submitted By: <b>"+user+"</b></p><img class='img-thumbnail side-bar-img' src='"+ imagePath +"' alt='"+ imagePath.replace('images/','').replace('.jpg','').replace('.png','') +"'></div>";
                   $("#winnerinfo").html(html);
               }
           });
