@@ -85,3 +85,22 @@ a.dropdown-link:hover{
   color: #1E1E1E;
   opacity: 0.5;
 }
+
+title-wrapper {
+  margin: 5px;
+}
+
+.submit-button {
+  background-color: #F5AD28;
+  color: #2E2F2F;
+  font-weight: bold;
+  border: 1px solid #2E2F2F;
+}
+
+.submit-button:hover {
+  opacity: 0.5;
+  font-weight: bold;
+  color: #2E2F2F;
+  border: 1px solid #2E2F2F;
+  background-color: #F5AD28;
+}

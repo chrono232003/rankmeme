@@ -96,11 +96,8 @@ if ($_SESSION["userID"]) {
         echo "</ul>";
         echo "</li>";
       } else {
-        //echo "<li class='nav-item'><a class='nav-link' href='registerlogin.php'>Login/Register</a></li>";
-        echo "<div class='fb-login-button' style='margin-top:8px;' data-size='medium' data-button-type='login_with' data-auto-logout-link='false' data-use-continue-as='false' onlogin='checkLoginState();'></div>";
-        //echo "<div class='g-signin2' data-onsuccess='onSignIn'></div>";
-        //echo "<li class='nav-item' style='padding:.5rem 1rem'><fb:login-button scope='public_profile,email' onlogin='checkLoginState();'></fb:login-button></li>";
-      }
+          echo "<div class='fb-login-button' style='margin-top:8px;' data-size='medium' data-button-type='login_with' data-auto-logout-link='false' data-use-continue-as='false' onlogin='checkLoginState();'></div>";
+              }
 ?>
       </ul>
     </div>

@@ -59,11 +59,23 @@ require_once('page-components/menu.php');
         <div class='col-lg-9'>
           <!-- Page Heading -->
           <center>
-            <h1 style="color:white;" class="my-4">Vote
-              <small>Which of these do you like the best?</small>
-            </h1>
-            <p>Login with Facebook to submit your own! (We will never post to facebook on your behalf)
-
+          <div class = "row title-wrapper my-4">
+            <div class="col-xl-4">
+                <?php
+                if ($_SESSION["userID"]) {
+                          echo "<button onclick=\"window.location.href='/submitameme.php'\" type='button' class='btn btn-primary btn-lg submit-button'>Submit A Meme</button>";
+                } else {
+                        echo "<p>Post your own!</p>";
+                        echo "<div class='fb-login-button' style='margin-top:8px;' data-size='medium' data-button-type='login_with' data-auto-logout-link='false' data-use-continue-as='false' onlogin='checkLoginState();'></div>";
+                      }
+                ?>
+            </div>
+              <div class="col-xl-8">
+                <h1 style="color:white;">Vote
+                  <small>Which of these do you like the best?</small>
+                </h1>
+              </div>
+          </div>
               <!-- loading spinner -->
               <div id = "spinner" style="display:none; margin-top: 50px; margin-bottom: 50px;">
               <i class="fa fa-circle-o-notch fa-spin" style="font-size:48px"></i>
