@@ -144,8 +144,8 @@ function getLatestMemes() {
 
     <!-- Page Content -->
     <div class="container">
-      <div class="row">
-        <div class='col-lg-12'>
+      <!-- <div class="row"> -->
+        <!-- <div class='col-lg-12'> -->
           <!-- Page Heading -->
           <center>
             <h1 style="color:white;" class="my-4">Latest Added</h1>
@@ -159,7 +159,7 @@ function getLatestMemes() {
 
 </center>
 
-          <div id="latestmemes" class="row">
+          <div id="latestmemes" class="masonry2">
 
 
           <?php
@@ -177,13 +177,15 @@ function getLatestMemes() {
                   $votecount = $row[4];
                   $commentcount = $row[5];
                   $avatar = $row[7];
-                  echo "<div class='col-lg-4 portfolio-item'>";
+                  //echo "<div class='col-lg-4 portfolio-item'>";
+                  // echo "<div class='item'>";
+                  echo "<div class='masonry2-brick'>";
                   if ($avatar) {
                       echo "<p style='color:white;'><img width='30px;' style='margin-right:5px;' src = '".$avatar."'/>".$userFirstName."</p>";
                       } else {
                       echo "<p style='color:white;'>".$userFirstName."</p>";
                      }
-                      echo "<a href = 'meme.php?memeid=".$memeID."'><img class='img-thumbnail img-fluid' style='max-height:300px;' src='". $imagePath ."' alt='".$altValue."'></a>";
+                      echo "<a href = 'meme.php?memeid=".$memeID."'><img class='img-thumbnail img-fluid' style='max-height:250px;' src='". $imagePath ."' alt='".$altValue."'></a>";
                       echo "<div class='row'>";
                       echo "<div class='col-lg-6'>";
                       echo "<p style='color:white;'><i class='fas fa-thumbs-up'></i> " .$votecount."</p>";
@@ -202,8 +204,8 @@ function getLatestMemes() {
           $('#spinner').css("display", "none");
           </script>
           </div>
-        </div>
-    </div>
+        <!-- </div> -->
+    <!-- </div> -->
   </div>
     <!-- /.container -->
 

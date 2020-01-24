@@ -5,9 +5,9 @@ class Connection {
 
 //server
  private$servername = "localhost";
- private $username = "root";
- private $password = "";
- private$db = "rank_meme";
+ private $username = "playolds_rank_me";
+ private $password = "Mayafit23!";
+ private$db = "playolds_rank_meme";
 
 
 
@@ -27,3 +27,4 @@ $a = new Connection();
 $conn = $a->connect_to_db();
 
 ?>
+

@@ -40,8 +40,8 @@ footer {
 }
 
 .sidebar {
-  background-color: #EB8921;
-  color: #1E1E1E;
+  /* background-color: #EB8921;
+  color: #1E1E1E; */
 }
 
 
@@ -59,10 +59,8 @@ a.dropdown-link:hover{
 }
 
 #weeklywinner {
-  color: #1E1E1E;
+  color: white !important;
   margin-top:10px;
-  background-color:#F5AD28;
-  padding:5px;
 }
 
 .comment-link {
@@ -78,11 +76,11 @@ a.dropdown-link:hover{
   background:none;
   text-decoration: underline;
   border:none;
-  color: #1E1E1E;
+  color: white;
 }
 
 .weekly-contest-link:hover {
-  color: #1E1E1E;
+  color: white;
   opacity: 0.5;
 }
 
@@ -103,4 +101,40 @@ title-wrapper {
   color: #2E2F2F;
   border: 1px solid #2E2F2F;
   background-color: #F5AD28;
+}
+
+/* blog page */
+.blog-page-meme-images {
+  max-width: 300px;
+}
+
+.div-bottom-margin {
+  margin-bottom:10px;
+}
+
+.masonry2 {
+  display: flex;
+  flex-flow: row wrap;
+  margin-left: -8px; /* Adjustment for the gutter */
+  width: 100%;
+}
+
+.masonry2-brick {
+  flex: auto;
+  height: 350px;
+  min-width: 150px;
+  margin: 0 8px 8px 0; /* Some gutter */
+}
+
+.masonry-brick:nth-child(4n+1) {
+  width: 250px;
+}
+.masonry-brick:nth-child(4n+1):nth-child(4n+2) {
+  width: 325px;
+}
+.masonry-brick:nth-child(4n+1):nth-child(4n+3) {
+  width: 180px;
+}
+.masonry-brick:nth-child(4n+1):nth-child(4n+4) {
+  width: 380px;
 }

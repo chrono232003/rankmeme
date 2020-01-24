@@ -13,6 +13,9 @@ session_start();
 
     <title>Submit and Vote on Memes - Rank Meme</title>
 
+    <meta name="verifyownership"
+ content="a51eeecc02296dbf909143c2350f4a4b"/>
+
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -60,19 +63,9 @@ require_once('page-components/menu.php');
           <!-- Page Heading -->
           <center>
           <div class = "row title-wrapper my-4">
-            <div class="col-xl-4">
-                <?php
-                if ($_SESSION["userID"]) {
-                          echo "<button onclick=\"window.location.href='/submitameme.php'\" type='button' class='btn btn-primary btn-lg submit-button'>Submit A Meme</button>";
-                } else {
-                        echo "<p>Post your own!</p>";
-                        echo "<div class='fb-login-button' style='margin-top:8px;' data-size='medium' data-button-type='login_with' data-auto-logout-link='false' data-use-continue-as='false' onlogin='checkLoginState();'></div>";
-                      }
-                ?>
-            </div>
-              <div class="col-xl-8">
-                <h1 style="color:white;">Vote
-                  <small>Which of these do you like the best?</small>
+              <div class="col-xl-12">
+                <h1 style="color:white;">Random Memes
+                  <small>Click on one to upvote</small>
                 </h1>
               </div>
           </div>
@@ -83,6 +76,33 @@ require_once('page-components/menu.php');
           </center>
 
           <div id="votebox" class="row"></div>
+
+          <h2>Some of the most popular memes in 2019</h2>
+          <div class = "div-bottom-margin">
+            <b>1. The Baby Yoda</b><br /><br />
+            <img src = "images/2348259505184442-baby-yoda-memes.jpg" class="blog-page-meme-images" alt="baby-yoda">
+            <br />
+            <p>He appeared onscreen in the premiere episode of the new Disney+ series The Mandalorian on November 12, the creature referred to as Baby Yoda has become an internet sensation.
+            Of course there had to be a meme around this seemingly innocent creature. The one above gives him a hilarious devious side and there are many more just like this one.</p>
+          </div>
+          <div class = "div-bottom-margin">
+            <b>2. The Angry Woman and Cat</b><br /><br />
+            <img src = "images/2348259505184442-angry-woman-and-cat.jpg" class="blog-page-meme-images" alt="angry-woman-and-cat">
+            <br />
+            <p>This is my personal favorite. It works in so many jokes and situations and the history behind the meme is interesting as well.
+            The first half of the meme comes from a 2011 episode of The Real Housewives of Beverly Hills, where then-cast member Taylor Armstrong found herself in an emotional confrontation with Camille Grammer, as fellow housewife Kyle Richards attempts to calm her down.
+            As for the other half of the meme starring the angry white cat, its origins began on Tumblr, when user deadbefordeath posted a photograph of a white cat with a bewildered expression sitting in a chair in front of a plate of vegetables.</p>
+          </div>
+          <div class = "div-bottom-margin">
+            <b>3. Momo</b><br /><br />
+            <img src = "images/2348259505184442-momo.jpeg" class="blog-page-meme-images" alt="momo">
+            <br />
+            <p>This is a funny one as something relatively creepy got made into a popular meme. Momo was an internet hoax on YouTube
+            where a creature called Momo would try an convince kids to kill themselves. Momo would allegidly interupt vidoes that young viewers were
+          watching and talk them into doing bad things. There is no actual evidence of this happening but become well known enough to be a popular meme.</p>
+          <br />
+          <p>It is exciting to see what new meme sensations that 2020 will bring.
+          </div>
 
         </div>
         <div class='col-lg-3 sidebar rounded shadow'>

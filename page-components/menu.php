@@ -73,6 +73,10 @@
 }
 </script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="background-color: #1E1E1E !important">
+
+  <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=296673567682634&autoLogAppEvents=1"></script>
+
   <div class="container">
     <img src = "site-images/logo.png" width="150px"/>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +86,7 @@
       <ul class="navbar-nav ml-auto">
 
         <li class='nav-item'><a class='nav-link' href='index.php'>Home</a></li>
-
+        <li class='nav-item'><a class='nav-link' href='blog.php'>Blog</a></li>
         <li class='nav-item'><a class='nav-link' href='latestadded.php'>Latest Memes</a></li>
         <li class='nav-item'><a class='nav-link' href='privatepolicy.php'>Privacy Policy</a></li>
 <?php
